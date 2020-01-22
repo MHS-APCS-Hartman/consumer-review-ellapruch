@@ -165,61 +165,63 @@ public class Review {
       return randomNegativeAdj();
     }
   }
+	
+// total sentiment
   Public static double totalSentiment(String fileName)
   {
-  String placeholder = “ “;
-  double totalsentiment = 0.0;
-  String review = textToString(fileName);
-  review.replaceAll(“\\p{punct}”, “ ”);
-  for (int i = 0; i < review.length(); i++)
-    {
-  if (review.substring(i, i + 1).equals(“ ”))
-  {
-  totalSentiment += sentimentVal(placeholder);
-  placeholder = “ ”;
-  }
-  else 
-  {
-  placeholder += review.substring(i, i + 1);
-  removePunctuation(placeholder);
-  }
-  }
-  return totalSentiment;
+  	String placeholder = “ “;
+  	double totalsentiment = 0.0;
+  	String review = textToString(fileName);
+  	review.replaceAll(“\\p{punct}”, “ ”);
+  	for (int i = 0; i < review.length(); i++)
+    	{
+  		if (review.substring(i, i + 1).equals(“ ”))
+ 		{
+  		totalSentiment += sentimentVal(placeholder);
+  		placeholder = “ ”;
+  		}
+  		else 
+  		{
+  		placeholder += review.substring(i, i + 1);
+ 		removePunctuation(placeholder);
+ 		}
+  	}
+  	return totalSentiment;
   }
   
+// star rating
   public static int starRating (String fileName)
-    {
-	    double sent = totalSentiment(fileName);
-	    int rating;
-	    if(sent<-3)
-	    {
-		  rating = 1;
-	    }
-	    else if(sentiment<0)
-	    {
-		  rating = 2;
-	    }
-	    else if(sentiment<3)
-	    {
-		  rating = 3;
-	    }
-	    else if(sentiment<6)
-	    {
-		  rating = 4;
-	    }
-	    else
-	    {
-		  rating = 5;
-	    }
-	  return rating;
+  {
+	double sent = totalSentiment(fileName);
+	int rating;
+	if(sent<-3)
+	{
+		rating = 1;
+	}
+	else if(sentiment<0)
+	{
+		 rating = 2;
+	}
+	else if(sentiment<3)
+	{
+		 rating = 3;
+	}
+	else if(sentiment<6)
+	{
+		rating = 4;
+	}
+	else
+	{
+		rating = 5;
+	}
+	return rating;
   } 
   
+  // fake review
   public static String fakeReview(String fileName)
-
   {
      String review = textToString(fileName);
      String fake = "";
-     
      for(int i = 0; i < review.length()-1; i++)
      {
         if(review.substring(i, i+1).equals("*"))
@@ -245,5 +247,6 @@ public class Review {
      }
      return fake;
 }
+	
 	
 }
