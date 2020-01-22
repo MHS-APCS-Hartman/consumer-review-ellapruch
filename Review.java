@@ -186,4 +186,37 @@ public class Review {
   }
   return totalSentiment;
   }
+  
+  public static String fakeReview(String fileName)
+
+  {
+     String review = textToString(fileName);
+     String fake = "";
+     
+     for(int i = 0; i < review.length()-1; i++)
+     {
+        if(review.substring(i, i+1).equals("*"))
+        {
+           i++;
+           String replace = "";
+           boolean isWord = true;
+           while(isWord)
+           {
+              i++;
+              if(review.substring(i, i+1).equals(" "))
+              {
+                 isWord = false;
+              }
+           }
+           replace = randomAdjective() + " ";
+           fake += replace;
+        }
+        else
+        {
+           fake += review.substring(i, i+1);
+        }
+     }
+     return fake;
+}
+
 }
