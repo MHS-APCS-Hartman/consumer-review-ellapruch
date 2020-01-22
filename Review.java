@@ -165,4 +165,25 @@ public class Review {
       return randomNegativeAdj();
     }
   }
+  Public static double totalSentiment(String fileName)
+  {
+  String placeholder = “ “;
+  double totalsentiment = 0.0;
+  String review = textToString(fileName);
+  review.replaceAll(“\\p{punct}”, “ ”);
+  for (int i = 0; i < review.length(); i++)
+    {
+  if (review.substring(i, i + 1).equals(“ ”))
+  {
+  totalSentiment += sentimentVal(placeholder);
+  placeholder = “ ”;
+  }
+  else 
+  {
+  placeholder += review.substring(i, i + 1);
+  removePunctuation(placeholder);
+  }
+  }
+  return totalSentiment;
+  }
 }
