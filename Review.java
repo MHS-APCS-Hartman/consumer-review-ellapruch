@@ -192,7 +192,34 @@ public class Review {
 	}
 	return totalSentiment;
   }
-
 	
+  //(Final version of starRating)
+  // This method returns a rating out of 5 stars that corresponds to the totalSentiment value assigned in the previous method. 
+  public static int starRating (String fileName)
+  {
+    double sent = totalSentiment(fileName);
+    int rating;
+    if(sent<-3)
+    {
+      rating = 1;
+    }
+    else if(sentiment<0)
+    {
+      rating = 2;
+    }
+    else if(sentiment<3)
+    {
+      rating = 3;
+    }
+    else if(sentiment<6)
+    {
+      rating = 4;
+    }
+    else
+    {
+      rating = 5;
+    }
+    return rating;
+}
 	
 }
