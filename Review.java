@@ -167,7 +167,7 @@ public class Review {
   }
 
 	
-  // (I'm cleaning up my prevoius work shown by other branches and replacing it in this branch.)	
+  // (I'm cleaning up my previous work shown by other branches and replacing it in this branch.)	
   // Total Sentiment: This method returns a "total sentiment" for a review. 
   // sentimentVal, the helper method, is then called and the sentiment value of the word is found
   // Then, senValue is the total sentiment value, and senValue is returned by the method
@@ -222,4 +222,27 @@ public class Review {
     return rating;
 }
 	
+//This method generates a fake review with a random adjective.
+public static String fakeReviewStronger(String fileName)
+{
+  String text = textToString(fileName);
+  for(int i = 0; i < text.length(); i++)
+  {
+    if(text.charAt(i) == '*')
+    {
+      int j = i;
+      while(true)
+      {
+	i++;
+      if(text.charAt(i) == ' ')
+      {
+        break;
+       }
+     }
+     int k = i;
+     text = text.substring(0, j) + randomAdjective() + text.substring(k);
+     }
+   }
+   return text;
+}
 }
