@@ -165,88 +165,61 @@ public class Review {
       return randomNegativeAdj();
     }
   }
+
 	
-// total sentiment
+  // (I'm cleaning up my prevoius work shown by other branches and replacing it in this branch.)	
+  // Total Sentiment: This method returns a "total sentiment" for a review. 
+  // sentimentVal, the helper method, is then called and the sentiment value of the word is found
+  // Then, senValue is the total sentiment value, and senValue is returned by the method
   Public static double totalSentiment(String fileName)
   {
-  	String placeholder = “ “;
-  	double totalsentiment = 0.0;
-  	String review = textToString(fileName);
-  	review.replaceAll(“\\p{punct}”, “ ”);
-  	for (int i = 0; i < review.length(); i++)
-    	{
-  		if (review.substring(i, i + 1).equals(“ ”))
- 		{
-  		totalSentiment += sentimentVal(placeholder);
-  		placeholder = “ ”;
-  		}
-  		else 
-  		{
-  		placeholder += review.substring(i, i + 1);
- 		removePunctuation(placeholder);
- 		}
-  	}
-  	return totalSentiment;
+    String placeholder = “ “;
+    double totalsentiment = 0.0;
+    String review = textToString(fileName);
+	review.replaceAll(“\\p{punct}”, “ ”);
+	for (int i = 0; i < review.length(); i++)
+	{
+	  if (review.substring(i, i + 1).equals(“ ”))
+	  {
+	    totalSentiment += sentimentVal(placeholder);
+	    placeholder = “ ”;
+	  }
+	  else 
+	  {
+	    placeholder += review.substring(i, i + 1);
+    	    removePunctuation(placeholder);
+	  }
+	}
+	return totalSentiment;
   }
-  
-// star rating
+	
+  //(Final version of starRating)
+  // This method returns a rating out of 5 stars that corresponds to the totalSentiment value assigned in the previous method. 
   public static int starRating (String fileName)
   {
-	double sent = totalSentiment(fileName);
-	int rating;
-	if(sent<-3)
-	{
-		rating = 1;
-	}
-	else if(sentiment<0)
-	{
-		 rating = 2;
-	}
-	else if(sentiment<3)
-	{
-		 rating = 3;
-	}
-	else if(sentiment<6)
-	{
-		rating = 4;
-	}
-	else
-	{
-		rating = 5;
-	}
-	return rating;
-  } 
-  
-  // fake review
-  public static String fakeReview(String fileName)
-  {
-     String review = textToString(fileName);
-     String fake = "";
-     for(int i = 0; i < review.length()-1; i++)
-     {
-        if(review.substring(i, i+1).equals("*"))
-        {
-           i++;
-           String replace = "";
-           boolean isWord = true;
-           while(isWord)
-           {
-              i++;
-              if(review.substring(i, i+1).equals(" "))
-              {
-                 isWord = false;
-              }
-           }
-           replace = randomAdjective() + " ";
-           fake += replace;
-        }
-        else
-        {
-           fake += review.substring(i, i+1);
-        }
-     }
-     return fake;
+    double sent = totalSentiment(fileName);
+    int rating;
+    if(sent<-3)
+    {
+      rating = 1;
+    }
+    else if(sentiment<0)
+    {
+      rating = 2;
+    }
+    else if(sentiment<3)
+    {
+      rating = 3;
+    }
+    else if(sentiment<6)
+    {
+      rating = 4;
+    }
+    else
+    {
+      rating = 5;
+    }
+    return rating;
 }
-	
 	
 }
